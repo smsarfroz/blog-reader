@@ -1,0 +1,65 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+  /* outline: 1px solid red; */
+}
+
+.Title {
+  font-size: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+nav {
+  height: 60px;
+  width: auto;
+  border: 0.5px solid rgb(103, 103, 103);
+  display: flex;
+  align-items: center;
+  padding: 5px 30px;
+}
+
+.pages {
+  display: flex;
+  gap: 4vw;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: large;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 300;
+}
+
+.userState {
+  display: flex;
+  gap: 4vw;
+  font-size: large;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 450;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.userState span {
+  height: 30px;
+  width: 80px;
+  outline: 2px solid black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pages a:hover {
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  text-decoration-thickness: 1px;
+}

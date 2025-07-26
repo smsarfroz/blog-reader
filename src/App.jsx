@@ -6,23 +6,34 @@ function App() {
 
   return (
     <>
-      <h1>hello world!</h1>
-
-      <Link className="link" to="/signup">
-        Signup
-      </Link>
-
-      <Link className="link" to="/login">
-        Login
-      </Link>
-
-      <Link className="link" to="/">
-        Home
-      </Link>
+      <nav>
+        <b className="Title">Sarfroz's Blog</b>
+        <div className="pages">
+          <span>
+            <Link to="/" className="link">
+              Home
+            </Link>
+          </span>
+          <span><a href="https://github.com/smsarfroz/Blog-API">github</a></span>
+        </div>
+        <div className="userState">
+          <span>
+            <Link to="/signup" className="link">
+              Sign up
+            </Link>
+          </span>
+          <span>
+            <Link to="/login" className="link">
+              Login
+            </Link>
+          </span>
+        </div>
+      </nav>
 
       <Outlet />
     </>
   )
 }
 
-export default App
+export default App;
+
