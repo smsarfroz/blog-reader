@@ -1,6 +1,6 @@
 import App from "./App";
-import Signup from './Components/Signup/Signup.jsx';
-import Login from './Components/Login/Login.jsx';
+import Signup from "./Components/Signup/Signup.jsx";
+import Login from "./Components/Login/Login.jsx";
 import ErrorPage from "./ErrorPage";
 import Blog from "./Components/Blog/Blog.jsx";
 
