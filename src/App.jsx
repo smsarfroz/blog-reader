@@ -1,8 +1,11 @@
 import './App.css'
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { blogContext } from './BlogContext.js';
+import { useEffect, useState, createContext } from 'react';
+
+const blogContext = createContext({
+  posts: [],
+});
 
 function App() {
   const [posts, setPosts] = useState(null);
