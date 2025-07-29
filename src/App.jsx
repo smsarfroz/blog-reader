@@ -1,8 +1,20 @@
 import './App.css'
-import { Link } from 'react-router-dom'
-import { Outlet } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { blogContext } from './BlogContext.js';
 
 function App() {
+  const [posts, setPosts] = useState(null);
+  const api = "http://localhost:3000";
+
+  useEffect(() => {
+    fetch(api, { mode: "cors" })
+      .then((response) => response.json())
+      .then((response) => setPosts(response))
+      .catch((error) => console.error(error));
+  }, []);
+
 
   return (
     <>
@@ -30,7 +42,9 @@ function App() {
         </div>
       </nav>
 
-      <Outlet />
+      <blogContext.Provider value={{posts}}>
+        <Outlet />
+      </blogContext.Provider>
     </>
   )
 }
