@@ -9,15 +9,25 @@ const blogContext = createContext({
 
 function App() {
   const [posts, setPosts] = useState(null);
-  const api = "http://localhost:3000";
 
   useEffect(() => {
-    fetch(api, { mode: "cors" })
-      .then((response) => response.json())
-      .then((response) => setPosts(response))
-      .catch((error) => console.error(error));
+    const fetchData = async() => {
+      try {
+        const response = await fetch('http://localhost:3000/posts');
+        console.log(response);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        console.log(result);
+        setPosts(result);
+      } catch (err) {
+        console.error(err);
+      } 
+    };
+    
+    fetchData();
   }, []);
-
 
   return (
     <>
