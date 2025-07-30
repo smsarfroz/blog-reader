@@ -22,7 +22,7 @@ function App() {
         console.log(result);
         setPosts(result);
       } catch (err) {
-        console.error(err);
+        console.error(err.mesage);
       } 
     };
     
