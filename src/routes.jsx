@@ -29,10 +29,6 @@ const routes = [
         ],
         errorElement: <ErrorPage />,
     }, 
-    // {
-    //     path: "/login",
-    //     element: <Login />
-    // }
 ];
 
 export default routes;

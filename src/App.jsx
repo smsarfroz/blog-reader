@@ -1,34 +1,34 @@
 import './App.css'
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
-import { useEffect, useState, createContext } from 'react';
+import { useEffect, useState} from 'react';
+import { blogContext } from './blogContext.js';
 
-const blogContext = createContext({
-  posts: [],
-});
-
-function App() {
+const usePosts = () => {
   const [posts, setPosts] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async() => {
-      try {
-        const response = await fetch('http://localhost:3000/posts');
-        console.log(response);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+    fetch("http://localhost:3000/posts", { mode: "cors" })
+      .then((response) => {
+        if (response.status >= 400) {
+          throw new Error("server error");
         }
-        const result = await response.json();
-        console.log(result);
-        setPosts(result);
-      } catch (err) {
-        console.error(err.mesage);
-      } 
-    };
-    
-    fetchData();
+        return response.json();
+      })
+      .then((response) => setPosts(response))
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
   }, []);
+  return { posts, error, loading };
+};
 
+function App() {
+  const { posts, error, loading } = usePosts();
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>A network error was encountered</p>;
   return (
     <>
       <nav>
