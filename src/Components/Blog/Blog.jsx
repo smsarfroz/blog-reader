@@ -1,11 +1,11 @@
 import { useLocation } from "react-router-dom";
+import styles from './Blog.module.css';
 
 function Blog() {
     const receivedData = useLocation().state;
-    console.log(receivedData);
     const { post } = receivedData;
     return (
-        <div>
+        <div className={styles.blog}>
             <h1>{post.title}</h1>
             <p>{post.content}</p>
             <hr />
@@ -13,4 +13,3 @@ function Blog() {
     );
 }
 export default Blog;
-

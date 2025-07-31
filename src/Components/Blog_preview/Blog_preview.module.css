@@ -10,6 +10,7 @@
     text-overflow: ellipsis;
 
     cursor: pointer;
+    background-color: white;
 }
 
 .postTitle {

@@ -1,0 +1,8 @@
+.blog {
+    width: 50vw;
+    height: 100vh;
+    /* border: 1px solid black; */
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}

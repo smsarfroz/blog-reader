@@ -56,9 +56,11 @@ function App() {
         </div>
       </nav>
 
-      <blogContext.Provider value={{posts}}>
-        <Outlet />
-      </blogContext.Provider>
+      <div className="commonBackground">
+        <blogContext.Provider value={{posts}}>
+          <Outlet />
+        </blogContext.Provider>
+      </div>
     </>
   )
 }

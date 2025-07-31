@@ -1,5 +1,6 @@
 .homePage {
-    margin: 2vw 16vw;
+    margin: 0vw 16vw;
+    padding: 2vw 0; 
 }
 
 .homeTitle {
