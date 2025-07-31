@@ -1,0 +1,14 @@
+.homePage {
+    margin: 2vw 16vw;
+}
+
+.homeTitle {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 2vw;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6vw;
+}
