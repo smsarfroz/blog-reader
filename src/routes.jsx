@@ -23,9 +23,9 @@ const routes = [
                 element: <Login />,
             },
             {
-                path: "/blog",
-                element: <Blog />,
-            },
+                path: "/posts/:id",
+                element: <Blog />
+            }
         ],
         errorElement: <ErrorPage />,
     }, 
