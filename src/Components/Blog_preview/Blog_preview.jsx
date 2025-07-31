@@ -1,9 +1,14 @@
-const Blog_preview = () => {
+function Blog_preview({post}) {
+
     return (
         <div>
-            <h1>blog preview page</h1>
+            <div className="post">
+                <h2>{post.title}</h2>
+                <p>{post.content}</p>
+                <p>{post.author.name}</p>
+                <p>Created: {post.createdAt}</p>
+            </div>
         </div>
     )
-};
-
+}
 export default Blog_preview;

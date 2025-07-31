@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import { blogContext } from "../../blogContext.js";
+import Blog_preview from "../Blog_preview/Blog_preview.jsx";
+import { v4 as uuidv4 } from 'uuid';
 
 const Home = () => {
     const { posts } = useContext(blogContext);
@@ -7,14 +9,12 @@ const Home = () => {
         <div>
             <h1>Home page</h1>
             {
-                posts.map(post => {
+                posts.map((post) => {
                     return (
-                        <div className="post">
-                            <h2>{post.title}</h2>
-                            <p>{post.content}</p>
-                            <p>{post.author.name}</p>
-                            <p>Created: {post.createdAt}</p>
-                        </div>
+                        <Blog_preview
+                            key={uuidv4()}
+                            post={post}
+                        />
                     )
                 })
             }
