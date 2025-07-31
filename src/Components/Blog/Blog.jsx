@@ -1,10 +1,16 @@
+import { useLocation } from "react-router-dom";
 
-const Blog = () => {
+function Blog() {
+    const receivedData = useLocation().state;
+    console.log(receivedData);
+    const { post } = receivedData;
     return (
         <div>
-            <h1>blog page</h1>
+            <h1>{post.title}</h1>
+            <p>{post.content}</p>
+            <hr />
         </div>
     );
 }
-
 export default Blog;
+

@@ -15,7 +15,7 @@ const Home = () => {
                 {
                     posts.map((post, i) => {
                         return (
-                            <Link to={`/posts/${i}`}>
+                            <Link to={`/posts/${i}`} state={{post: post}} key={uuidv4()}>
                                 <Blog_preview
                                     key={uuidv4()}
                                     post={post}
