@@ -12,6 +12,10 @@
     cursor: pointer;
     background-color: white;
 }
+.post:hover {
+    transform: scale(1.0005);
+    box-shadow: 3px 2px 2px rgb(160, 159, 159);
+}
 
 .postTitle {
     font-size: 28px;
