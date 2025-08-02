@@ -6,9 +6,16 @@ function Blog() {
     const { post } = receivedData;
     return (
         <div className={styles.blog}>
-            <h1>{post.title}</h1>
-            <p>{post.content}</p>
+            <div className={styles.container}>
+                <h1 className={styles.title}>{post.title}</h1>
+                <p className={styles.content}>{post.content}</p>
+            </div>
             <hr />
+            <div className={styles.inputContainer}>
+                <form>
+                    <textarea name="" id="commentContainer" className={styles.commentContainer} placeholder="Add a comment..."></textarea>
+                </form>
+            </div>
         </div>
     );
 }
