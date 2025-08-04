@@ -20,7 +20,7 @@ const Home = () => {
                                     key={uuidv4()}
                                     post={post}
                                 />
-                            </Link>
+                            </Link> 
                         )
                     })
                 }
