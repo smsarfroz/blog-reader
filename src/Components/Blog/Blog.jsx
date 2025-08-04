@@ -14,6 +14,7 @@ function Blog() {
             <div className={styles.inputContainer}>
                 <form>
                     <textarea name="" id="commentContainer" className={styles.commentContainer} placeholder="Add a comment..."></textarea>
+                    <button className={styles.postButton}>Post</button>
                 </form>
             </div>
         </div>
