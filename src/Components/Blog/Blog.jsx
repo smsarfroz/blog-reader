@@ -2,6 +2,8 @@ import { useLocation } from "react-router-dom";
 import styles from './Blog.module.css';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
+import Comment from "../Comment/Comment.jsx";
 
 const useComments = () => {
     const [comments, setComments] = useState(null);
@@ -12,7 +14,7 @@ const useComments = () => {
     let postid = params.id;
     let id = parseInt(postid);
     useEffect(() => {
-        fetch(`http://localhost:3000/posts/${id}`, { mode: "cors" })
+        fetch(`http://localhost:3000/posts/${id}/comments`, { mode: "cors" })
         .then((response) => {
         if (response.status >= 400) {
             throw new Error("server error");
@@ -31,6 +33,7 @@ function Blog() {
     const receivedData = useLocation().state;
     const { post } = receivedData;
     const {comments, error, loading} = useComments();
+    // console.log(comments, error, loading);
     if (loading) {
         return <p>Loading...</p>;
     } else if (error) {
@@ -52,13 +55,12 @@ function Blog() {
 
             <div className={styles.comments}>
                 {
-                    comments.map((comment, i) => {
+                    comments.map((comment) => {
                         return (
-                            <div className="comment">
-                                <h2>{comment.user.name}</h2>
-                                <p>{comment.createdAt}</p>
-                                <p>{comment.content}</p>
-                            </div>
+                            <Comment
+                                comment={comment}
+                                key={uuidv4()}
+                            />
                         );
                     })
                 }
@@ -67,3 +69,4 @@ function Blog() {
     );
 }
 export default Blog;
+

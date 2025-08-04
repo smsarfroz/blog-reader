@@ -61,3 +61,10 @@
     transform: scale(1.0005);
     box-shadow: 2px 2px 2px rgb(160, 159, 159);
 }
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+    margin: 4vw 0;
+}

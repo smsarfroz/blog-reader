@@ -1,0 +1,10 @@
+.commentDetails {
+    display: flex;
+    justify-content: space-between;
+    font-family:monospace
+}
+
+.date {
+    color: grey;
+    font-size: 13px;
+}
