@@ -43,7 +43,7 @@ function Blog() {
         <div className={styles.blog}>
             <div className={styles.container}>
                 <h1 className={styles.title}>{post.title}</h1>
-                <p className={styles.content}>{post.content}</p>
+                <div className={styles.content}>{post.content}</div>
             </div>
             <hr />
             <div className={styles.inputContainer}>

@@ -26,6 +26,20 @@ const usePosts = () => {
 
 function App() {
   const { posts, error, loading } = usePosts();
+  
+  const [ loggedIn, setLoggedIn ] = useState(() => {
+    const savedLoggedIn = localStorage.getItem('loggedIn');
+    return savedLoggedIn ? JSON.parse(savedLoggedIn) : false;
+  })
+
+  console.log('App.js loggedIn: ', loggedIn);
+
+  const [ authorId, setAuthorId ] = useState(() => {
+    const savedAuthorId = localStorage.getItem('authorId');
+    return savedAuthorId ? JSON.parse(savedAuthorId) : 0;
+  })
+
+  console.log(authorId);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>A network error was encountered</p>;
@@ -43,21 +57,39 @@ function App() {
           <span><a href="https://github.com/smsarfroz/Blog-API">github</a></span>
         </div>
         <div className="userState">
-          <span>
-            <Link to="/signup" className="link">
-              Sign up
-            </Link>
-          </span>
-          <span>
-            <Link to="/login" className="link">
-              Login
-            </Link>
-          </span>
+          {
+            loggedIn ? (
+              <>
+                <h2>Welcome</h2>
+
+                <span>
+                  <Link to="/signup" className="link">
+                    Log out
+                  </Link>
+                </span>
+              </>
+            ) : (
+              
+              <>
+                <span>
+                  <Link to="/signup" className="link">
+                    Sign up
+                  </Link>
+                </span>
+                <span>
+                  <Link to="/login" className="link">
+                    Login
+                  </Link>
+                </span>
+                
+              </>
+            )
+          }
         </div>
       </nav>
 
       <div className="commonBackground">
-        <blogContext.Provider value={{posts}}>
+        <blogContext.Provider value={{posts, authorId, setAuthorId, loggedIn, setLoggedIn}}>
           <Outlet />
         </blogContext.Provider>
       </div>

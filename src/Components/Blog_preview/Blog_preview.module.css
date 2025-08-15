@@ -20,12 +20,22 @@
 .postTitle {
     font-size: 28px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+    /* text-align: center; */
 }
 
 .postContent {
-    height: 4.5vw;
+    height: 3.7vw;
+    width: auto;
     color: rgb(137, 138, 139);
-    margin-top: 0.4vw;
+    margin: 0.4vw;
+
+    overflow-wrap: break-word;
+    white-space: normal;
+    overflow-y: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .postDetail {

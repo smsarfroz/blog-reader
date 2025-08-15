@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
     const { posts } = useContext(blogContext);
+    // console.log(posts);
     return (
         <div className={styles.homePage}>
             <h1 className={styles.homeTitle}>All Blogs</h1>
