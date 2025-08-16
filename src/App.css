@@ -67,3 +67,7 @@ a {
 .commonBackground {
   background-color: rgb(255, 251, 251);
 }
+
+.link {
+  cursor: pointer;
+}

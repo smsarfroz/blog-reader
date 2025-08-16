@@ -30,6 +30,7 @@ const Login = () => {
         });
 
         // console.log(data);
+        localStorage.setItem('username', JSON.stringify(data['username']));
         setUsername(data['username']);
 
         fetch("http://localhost:3000/login", {

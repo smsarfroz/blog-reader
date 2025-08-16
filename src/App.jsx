@@ -50,6 +50,13 @@ function App() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>A network error was encountered</p>;
   
+  function handleLogout() {
+    setLoggedIn(false);
+    localStorage.removeItem('token');
+    localStorage.removeItem('loggedIn');
+    localStorage.removeItem('username');
+  }
+
   return (
     <>
       <nav>
@@ -69,9 +76,9 @@ function App() {
                 <h2>Welcome {username}</h2>
 
                 <span>
-                  <Link to="/signup" className="link">
+                  <div className="link" onClick={handleLogout}>
                     Log out
-                  </Link>
+                  </div>
                 </span>
               </>
             ) : (
