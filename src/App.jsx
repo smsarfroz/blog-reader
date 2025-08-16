@@ -73,7 +73,7 @@ function App() {
           {
             loggedIn ? (
               <>
-                <h2>Welcome {username}</h2>
+                <h2>{username}</h2>
 
                 <span>
                   <div className="link" onClick={handleLogout}>

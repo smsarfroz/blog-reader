@@ -74,3 +74,12 @@
     gap: 2vw;
     margin: 4vw 0;
 }
+
+.logintoComment {
+    text-align: center;
+    margin-top: 6vw;
+}
+.login {
+    text-decoration: underline;
+    text-decoration-color: rgb(180, 180, 226);
+}
