@@ -38,8 +38,14 @@ function App() {
     const savedAuthorId = localStorage.getItem('authorId');
     return savedAuthorId ? JSON.parse(savedAuthorId) : 0;
   })
-
   console.log(authorId);
+
+  const [ username, setUsername ] = useState(() => {
+    const savedUsername = localStorage.getItem('username');
+    return savedUsername ? JSON.parse(savedUsername) : 0;
+  });
+
+  console.log('username: ', username);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>A network error was encountered</p>;
@@ -60,7 +66,7 @@ function App() {
           {
             loggedIn ? (
               <>
-                <h2>Welcome</h2>
+                <h2>Welcome {username}</h2>
 
                 <span>
                   <Link to="/signup" className="link">
@@ -89,7 +95,7 @@ function App() {
       </nav>
 
       <div className="commonBackground">
-        <blogContext.Provider value={{posts, authorId, setAuthorId, loggedIn, setLoggedIn}}>
+        <blogContext.Provider value={{posts, authorId, setAuthorId, loggedIn, setLoggedIn, username, setUsername}}>
           <Outlet />
         </blogContext.Provider>
       </div>

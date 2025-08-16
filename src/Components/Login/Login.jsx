@@ -4,7 +4,7 @@ import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-    const { loggedIn, setLoggedIn } = useContext(blogContext);
+    const { loggedIn, setLoggedIn, setUsername } = useContext(blogContext);
 
     useEffect(() => {
         localStorage.setItem('loggedIn', JSON.stringify(loggedIn));
@@ -30,6 +30,7 @@ const Login = () => {
         });
 
         // console.log(data);
+        setUsername(data['username']);
 
         fetch("http://localhost:3000/login", {
             mode: 'cors',

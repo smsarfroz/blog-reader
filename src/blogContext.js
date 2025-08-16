@@ -3,6 +3,7 @@ const blogContext = createContext({
   posts: [],
   loggedIn: false,
   authorId: null,
+  username: null
 });
 
 export { blogContext };
