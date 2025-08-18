@@ -17,7 +17,7 @@ const Login = () => {
 
     function handleLogin(token) {
         setLoggedIn(true);
-        localStorage.setItem('token', JSON.stringify(token));
+        localStorage.setItem('token', (token));
     }
 
     function handleSubmit(e) {

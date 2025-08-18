@@ -35,6 +35,7 @@ function Blog() {
     const receivedData = useLocation().state;
     const { post } = receivedData;
     const {comments, error, loading} = useComments();
+    
     let params = useParams();
     let postid = params.id;
     let id = parseInt(postid);
@@ -52,11 +53,14 @@ function Blog() {
         console.log('data: ', data);
         console.log('id: ', id);
 
+        const token = localStorage.getItem('token');
+
         fetch((`http://localhost:3000/posts/${id}/comment`), {
             mode: 'cors',
             method: "post",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(data)
         })
