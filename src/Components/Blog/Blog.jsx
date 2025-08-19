@@ -74,6 +74,7 @@ function Blog() {
         .then((response) => {
             console.log('response: ', response);
             console.log('comment added successfully.');
+            window.location.reload();
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);

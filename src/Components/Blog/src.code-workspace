@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../../../../Blog-API"
+		},
+		{
+			"path": "../../../../BLOG-writer/src"
 		}
 	],
 	"settings": {}
