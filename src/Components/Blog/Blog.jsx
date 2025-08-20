@@ -55,7 +55,7 @@ function Blog() {
 
         const token = localStorage.getItem('token');
 
-        fetch((`http://blog-api-c5kc.onrender/posts/${id}/comment`), {
+        fetch((`https://blog-api-c5kc.onrender.com/posts/${id}/comment`), {
             mode: 'cors',
             method: "post",
             headers: {
