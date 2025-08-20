@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { useEffect, useState} from 'react';
 import { blogContext } from './blogContext.js';
+import 'dotenv/config';
 
 const usePosts = () => {
   const [posts, setPosts] = useState(null);
@@ -10,7 +11,7 @@ const usePosts = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/posts", { mode: "cors" })
+    fetch(`http://blog-api-c5kc.onrender/posts`, { mode: "cors" })
       .then((response) => {
         if (response.status >= 400) {
           throw new Error("server error");
@@ -32,20 +33,20 @@ function App() {
     return savedLoggedIn ? JSON.parse(savedLoggedIn) : false;
   })
 
-  console.log('App.js loggedIn: ', loggedIn);
+  // console.log('App.js loggedIn: ', loggedIn);
 
   const [ authorId, setAuthorId ] = useState(() => {
     const savedAuthorId = localStorage.getItem('authorId');
     return savedAuthorId ? JSON.parse(savedAuthorId) : 0;
   })
-  console.log(authorId);
+  // console.log(authorId);
 
   const [ username, setUsername ] = useState(() => {
     const savedUsername = localStorage.getItem('username');
     return savedUsername ? JSON.parse(savedUsername) : 0;
   });
 
-  console.log('username: ', username);
+  // console.log('username: ', username);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>A network error was encountered</p>;
@@ -55,6 +56,7 @@ function App() {
     localStorage.removeItem('token');
     localStorage.removeItem('loggedIn');
     localStorage.removeItem('username');
+    // localStorage.removeItem('')
   }
 
   return (

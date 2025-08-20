@@ -16,7 +16,7 @@ const useComments = () => {
     let postid = params.id;
     let id = parseInt(postid);
     useEffect(() => {
-        fetch(`http://localhost:3000/posts/${id}/comments`, { mode: "cors" })
+        fetch(`http://blog-api-c5kc.onrender/posts/${id}/comments`, { mode: "cors" })
         .then((response) => {
         if (response.status >= 400) {
             throw new Error("server error");
@@ -50,12 +50,12 @@ function Blog() {
         formData.forEach((value, key) => {
             data[key] = value;
         });
-        console.log('data: ', data);
-        console.log('id: ', id);
+        // console.log('data: ', data);
+        // console.log('id: ', id);
 
         const token = localStorage.getItem('token');
 
-        fetch((`http://localhost:3000/posts/${id}/comment`), {
+        fetch((`http://blog-api-c5kc.onrender/posts/${id}/comment`), {
             mode: 'cors',
             method: "post",
             headers: {
@@ -68,11 +68,11 @@ function Blog() {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            console.log('response, typeof ', response, typeof response);
+            // console.log('response, typeof ', response, typeof response);
             return response.json();
         })
-        .then((response) => {
-            console.log('response: ', response);
+        .then(() => {
+            // console.log('response: ', response);
             console.log('comment added successfully.');
             window.location.reload();
         })

@@ -33,7 +33,7 @@ const Login = () => {
         localStorage.setItem('username', JSON.stringify(data['username']));
         setUsername(data['username']);
 
-        fetch("http://localhost:3000/login", {
+        fetch("http://blog-api-c5kc.onrender/login", {
             mode: 'cors',
             method: "post",
             headers: {
@@ -51,7 +51,7 @@ const Login = () => {
             console.log('user logged in successfully:');
             // console.log('response: ', response);
             handleLogin(response.token);
-            console.log('loggedIn: ', loggedIn);
+            // console.log('loggedIn: ', loggedIn);
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);

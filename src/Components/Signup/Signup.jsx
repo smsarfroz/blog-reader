@@ -24,7 +24,7 @@ const Signup = () => {
 
         // console.log(data);
 
-        fetch("http://localhost:3000/signup", {
+        fetch("http://blog-api-c5kc.onrender/signup", {
             mode: 'cors',
             method: "post",
             headers: {
