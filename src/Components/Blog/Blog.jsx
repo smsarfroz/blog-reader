@@ -71,8 +71,8 @@ function Blog() {
             // console.log('response, typeof ', response, typeof response);
             return response.json();
         })
-        .then(() => {
-            // console.log('response: ', response);
+        .then((response) => {
+            console.log('response: ', response);
             console.log('comment added successfully.');
             window.location.reload();
         })
