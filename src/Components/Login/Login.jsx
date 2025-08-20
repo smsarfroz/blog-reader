@@ -33,7 +33,7 @@ const Login = () => {
         localStorage.setItem('username', JSON.stringify(data['username']));
         setUsername(data['username']);
 
-        fetch("http://blog-api-c5kc.onrender/login", {
+        fetch("https://blog-api-c5kc.onrender.com/login", {
             mode: 'cors',
             method: "post",
             headers: {

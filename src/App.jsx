@@ -10,7 +10,7 @@ const usePosts = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://blog-api-c5kc.onrender/posts`, { mode: "cors" })
+    fetch(`https://blog-api-c5kc.onrender.com/posts`, { mode: "cors" })
       .then((response) => {
         if (response.status >= 400) {
           throw new Error("server error");

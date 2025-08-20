@@ -16,7 +16,7 @@ const useComments = () => {
     let postid = params.id;
     let id = parseInt(postid);
     useEffect(() => {
-        fetch(`http://blog-api-c5kc.onrender/posts/${id}/comments`, { mode: "cors" })
+        fetch(`https://blog-api-c5kc.onrender.com/posts/${id}/comments`, { mode: "cors" })
         .then((response) => {
         if (response.status >= 400) {
             throw new Error("server error");
