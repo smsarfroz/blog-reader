@@ -27,14 +27,14 @@ const useComments = () => {
         .catch((error) => setError(error))
         .finally(() => setLoading(false));
     }, []);
-    return {comments, error, loading};
+    return {comments, setComments, error, loading};
 };
 
 function Blog() {
     const { loggedIn, authorId } = useContext(blogContext);
     const receivedData = useLocation().state;
     const { post } = receivedData;
-    const {comments, error, loading} = useComments();
+    const {comments, setComments, error, loading} = useComments();
     
     let params = useParams();
     let postid = params.id;
@@ -72,7 +72,8 @@ function Blog() {
             return response.json();
         })
         .then((response) => {
-            console.log('response: ', response);
+            // console.log('response: ', response);
+            setComments(prevComments => [...prevComments, response]);
             console.log('comment added successfully.');
             // window.location.reload();
         })
