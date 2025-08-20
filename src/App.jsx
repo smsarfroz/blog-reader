@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { useEffect, useState} from 'react';
 import { blogContext } from './blogContext.js';
-import 'dotenv/config';
 
 const usePosts = () => {
   const [posts, setPosts] = useState(null);
