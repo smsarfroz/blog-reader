@@ -33,7 +33,7 @@ const Login = () => {
         localStorage.setItem('username', JSON.stringify(data['username']));
         setUsername(data['username']);
 
-        fetch("http://localhost:3000/login", {
+        fetch("/login", {
             mode: 'cors',
             method: "post",
             headers: {

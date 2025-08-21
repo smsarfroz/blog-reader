@@ -10,7 +10,7 @@ const usePosts = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/posts`, { mode: "cors" })
+    fetch(`/posts`, { mode: "cors" })
       .then((response) => {
         if (response.status >= 400) {
           throw new Error("server error");
