@@ -33,7 +33,7 @@ const Login = () => {
         localStorage.setItem('username', JSON.stringify(data['username']));
         setUsername(data['username']);
 
-        fetch("https://blog-api-c5kc.onrender.com/login", {
+        fetch("http://localhost:3000/login", {
             mode: 'cors',
             method: "post",
             headers: {
@@ -52,6 +52,7 @@ const Login = () => {
             // console.log('response: ', response);
             handleLogin(response.token);
             // console.log('loggedIn: ', loggedIn);
+            window.location = '/';
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
@@ -64,12 +65,12 @@ const Login = () => {
             <form action="/" method="post" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username">Username: </label>
-                    <input type="text" name="username" id="username"/>
+                    <input type="text" name="username" id="username" required/>
                 </div>
 
                 <div>
                     <label htmlFor="password">Password: </label>
-                    <input type="text" name="password" id="password"/>
+                    <input type="password" name="password" id="password" required/>
                 </div>
 
                 <button type="submit" className={styles.login}>Log in</button>

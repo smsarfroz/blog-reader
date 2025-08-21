@@ -24,7 +24,7 @@ const Signup = () => {
 
         // console.log(data);
 
-        fetch("https://blog-api-c5kc.onrender.com/signup", {
+        fetch("http://localhost:3000/signup", {
             mode: 'cors',
             method: "post",
             headers: {
@@ -41,6 +41,7 @@ const Signup = () => {
         .then((user) => {
             handleAuthorIdChange(user.id);
             console.log('user created successfully:');
+            window.location = '/';
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
@@ -53,12 +54,12 @@ const Signup = () => {
             <form action="/signup" method="post" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username">Username:</label>
-                    <input type="text" name="username" id="username"/>
+                    <input type="text" name="username" id="username" required/>
                 </div>
 
                 <div>
                     <label htmlFor="password">Password:</label>
-                    <input type="text" name="password" id="password"/>
+                    <input type="password" name="password" id="password" required/>
                 </div>
 
                 <button type="submit" className={styles.signup}>Sign Up</button>

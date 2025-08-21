@@ -16,7 +16,7 @@ const useComments = () => {
     let postid = params.id;
     let id = parseInt(postid);
     useEffect(() => {
-        fetch(`https://blog-api-c5kc.onrender.com/posts/${id}/comments`, { mode: "cors" })
+        fetch(`http://localhost:3000/posts/${id}/comments`, { mode: "cors" })
         .then((response) => {
         if (response.status >= 400) {
             throw new Error("server error");
@@ -35,6 +35,7 @@ function Blog() {
     const receivedData = useLocation().state;
     const { post } = receivedData;
     const {comments, setComments, error, loading} = useComments();
+    const [inputComment, setInputComment] = useState("");
     
     let params = useParams();
     let postid = params.id;
@@ -52,10 +53,10 @@ function Blog() {
         });
         // console.log('data: ', data);
         // console.log('id: ', id);
-
+        setInputComment("");
         const token = localStorage.getItem('token');
 
-        fetch((`https://blog-api-c5kc.onrender.com/posts/${id}/comment`), {
+        fetch((`http://localhost:3000/posts/${id}/comment`), {
             mode: 'cors',
             method: "post",
             headers: {
@@ -75,12 +76,15 @@ function Blog() {
             // console.log('response: ', response);
             setComments(prevComments => [...prevComments, response]);
             console.log('comment added successfully.');
-            // window.location.reload();
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
         })
     }
+    function handleInputChange(e) {
+        setInputComment(e.target.value);
+    }
+
 
     if (loading) {
         return <p>Loading...</p>;
@@ -104,7 +108,7 @@ function Blog() {
                                 <input type="hidden" name="userId" value={authorId} />
                                 <input type="hidden" name="postId" value={id}/>
 
-                                <textarea name="content" id="commentContainer" className={styles.commentContainer} placeholder="Add a comment..." required></textarea>
+                                <textarea name="content" id="commentContainer" className={styles.commentContainer} value={inputComment} onChange={handleInputChange} placeholder="Add a comment..." required></textarea>
                                 
                                 
                                 <button className={styles.postButton}>Post</button>
