@@ -75,6 +75,7 @@ function Blog() {
         .then((response) => {
             // console.log('response: ', response);
             setComments(prevComments => [...prevComments, response]);
+            console.log('response: ', response);
             console.log('comment added successfully.');
         })
         .catch(error => {
