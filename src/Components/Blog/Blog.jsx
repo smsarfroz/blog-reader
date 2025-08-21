@@ -56,7 +56,7 @@ function Blog() {
         setInputComment("");
         const token = localStorage.getItem('token');
 
-        fetch((`http://localhost:3000/posts/${id}/comment`), {
+        fetch((`/posts/${id}/comment`), {
             mode: 'cors',
             method: "post",
             headers: {
