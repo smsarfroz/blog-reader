@@ -73,7 +73,7 @@ function Blog() {
             return response.json();
         })
         .then((response) => {
-            console.log('response: ', response.clone());
+            // console.log('response: ', response.clone());
             setComments(prevComments => [...prevComments, response]);
             // console.log('response: ', response);
             console.log('comment added successfully.');
