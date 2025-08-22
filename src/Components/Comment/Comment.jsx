@@ -1,7 +1,7 @@
 import styles from './Comment.module.css';
 
 function Comment({comment}) {
-    
+    console.log(comment);
     return (
         <div className={styles.comment}>
             <div className={styles.commentDetails}>

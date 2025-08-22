@@ -31,15 +31,17 @@ const useComments = () => {
 };
 
 function Blog() {
-    const { loggedIn, authorId } = useContext(blogContext);
-    const receivedData = useLocation().state;
-    const { post } = receivedData;
-    const {comments, setComments, error, loading} = useComments();
-    const [inputComment, setInputComment] = useState("");
-    
     let params = useParams();
     let postid = params.id;
     let id = parseInt(postid);
+    const { posts, loggedIn, authorId } = useContext(blogContext);
+    const post = posts[id];
+    const {comments, setComments, error, loading} = useComments();
+    const [inputComment, setInputComment] = useState("");
+    
+    console.log('post: ', post);
+
+    
     // console.log(comments, error, loading);
 
     function handleComment(e) {
