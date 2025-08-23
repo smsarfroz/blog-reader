@@ -16,6 +16,7 @@ const useComments = () => {
     let params = useParams();
     let postid = params.id;
     let id = parseInt(postid);
+    console.log("here1");
     useEffect(() => {
         fetch(`/posts/${id}/comments`, { mode: "cors" })
         .then((response) => {
@@ -29,12 +30,16 @@ const useComments = () => {
         .finally(() => setLoading(false));
     }, []);
 
+    console.log("comments: ", comments);
+    console.log("here2");
+
     useEffect(() => {
         fetch(`/posts/${id}`, { mode: "cors" })
         .then((response) => {
             if (response.status >= 400) {
                 throw new Error("server error");
             }
+            console.log("1 response: ", response);
             return response.json();
         })
         .then((response) => {
