@@ -37,7 +37,10 @@ const useComments = () => {
             }
             return response.json();
         })
-        .then((response) => setPost(response))
+        .then((response) => {
+            console.log("response: ", response);
+            setPost(response)
+        })
         .catch((error) => {
             console.error(error);
         })
@@ -54,6 +57,7 @@ function Blog() {
     const [inputComment, setInputComment] = useState("");
     
     console.log('post: ', post);
+    console.log("comments: ", comments);
     let params = useParams();
     let postid = params.id;
     let id = parseInt(postid);
