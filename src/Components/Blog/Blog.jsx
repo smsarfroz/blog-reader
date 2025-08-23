@@ -32,17 +32,17 @@ const useComments = () => {
     useEffect(() => {
         fetch(`/posts/${id}`, { mode: "cors" })
         .then((response) => {
-        if (response.status >= 400) {
-            throw new Error("server error");
-        }
-        return response.json();
+            if (response.status >= 400) {
+                throw new Error("server error");
+            }
+            return response.json();
         })
         .then((response) => setPost(response))
         .catch((error) => {
             console.error(error);
         })
     }, []);
-    
+
     return {post, comments, setComments, error, loading};
 };
 
@@ -53,6 +53,7 @@ function Blog() {
     const {post, comments, setComments, error, loading} = useComments();
     const [inputComment, setInputComment] = useState("");
     
+    console.log('post: ', post);
     let params = useParams();
     let postid = params.id;
     let id = parseInt(postid);
