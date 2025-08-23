@@ -26,7 +26,7 @@ const usePosts = () => {
 
 function App() {
   const { posts, error, loading } = usePosts();
-  
+    
   const [ loggedIn, setLoggedIn ] = useState(() => {
     const savedLoggedIn = localStorage.getItem('loggedIn');
     return savedLoggedIn ? JSON.parse(savedLoggedIn) : false;

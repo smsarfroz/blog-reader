@@ -11,6 +11,7 @@ const useComments = () => {
     const [comments, setComments] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [post, setPost] = useState(null);
 
     let params = useParams();
     let postid = params.id;
@@ -27,21 +28,34 @@ const useComments = () => {
         .catch((error) => setError(error))
         .finally(() => setLoading(false));
     }, []);
-    return {comments, setComments, error, loading};
+
+    useEffect(() => {
+        fetch(`/posts/${id}`, { mode: "cors" })
+        .then((response) => {
+        if (response.status >= 400) {
+            throw new Error("server error");
+        }
+        return response.json();
+        })
+        .then((response) => setPost(response))
+        .catch((error) => {
+            console.error(error);
+        })
+    }, []);
+    
+    return {post, comments, setComments, error, loading};
 };
 
 function Blog() {
+    const { loggedIn, authorId } = useContext(blogContext);
+    // const receivedData = useLocation().state;
+    // const { post } = receivedData;
+    const {post, comments, setComments, error, loading} = useComments();
+    const [inputComment, setInputComment] = useState("");
+    
     let params = useParams();
     let postid = params.id;
     let id = parseInt(postid);
-    const { posts, loggedIn, authorId } = useContext(blogContext);
-    const post = posts[id];
-    const {comments, setComments, error, loading} = useComments();
-    const [inputComment, setInputComment] = useState("");
-    
-    console.log('post: ', post);
-
-    
     // console.log(comments, error, loading);
 
     function handleComment(e) {
