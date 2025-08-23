@@ -13,6 +13,9 @@ const useComments = () => {
     const [loading, setLoading] = useState(true);
     const [post, setPost] = useState(null);
 
+    const [error2, setError2] = useState(null);
+    const [loading2, setLoading2] = useState(true);
+
     let params = useParams();
     let postid = params.id;
     let id = parseInt(postid);
@@ -36,8 +39,8 @@ const useComments = () => {
     useEffect(() => {
         fetch(`/posts/${id}`, { mode: "cors" })
         .then((response) => {
-            if (response.status >= 400) {
-                throw new Error("server error");
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
             console.log("1 response: ", response);
             return response.json();
@@ -47,26 +50,34 @@ const useComments = () => {
             setPost(response)
         })
         .catch((error) => {
-            console.error(error);
+            console.error('There was a problem with the fetch operation:', error);
+            setError2(error);
+        })
+        .finally(() => {
+            setLoading2(false);
         })
     }, []);
 
-    return {post, comments, setComments, error, loading};
+    return {post, error2, loading2, comments, setComments, error, loading};
 };
 
 function Blog() {
     const { loggedIn, authorId } = useContext(blogContext);
     // const receivedData = useLocation().state;
     // const { post } = receivedData;
-    const {post, comments, setComments, error, loading} = useComments();
+    const {post, error2, loading2, comments, setComments, error, loading} = useComments();
     const [inputComment, setInputComment] = useState("");
     
-    console.log('post: ', post);
-    console.log("comments: ", comments);
+
     let params = useParams();
     let postid = params.id;
     let id = parseInt(postid);
     // console.log(comments, error, loading);
+    if (loading || loading2) return <p>Loading...</p>;
+    if (error || error2) return <p>A network error was encountered</p>;
+
+    console.log('post: ', post);
+    console.log("comments: ", comments);
 
     function handleComment(e) {
         e.preventDefault();
