@@ -25,7 +25,7 @@ const useComments = () => {
                     fetch(`/posts/${id}`, { mode: "cors" })
                 ]);
 
-                if (!post.ok || !comments.ok) {
+                if (!postResponse.ok || !commentsResponse.ok) {
                     throw new Error("Failed to fetch Data");
                 }
 
