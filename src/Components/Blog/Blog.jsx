@@ -21,8 +21,8 @@ const useComments = () => {
         const fetchData = async() => {
             try {
                 const [postResponse, commentsResponse] = await Promise.all([
-                    fetch(`/posts/${id}/comments`, { mode: "cors" }),
-                    fetch(`/posts/${id}`, { mode: "cors" })
+                    fetch(`/posts/${id}`, { mode: "cors" }),
+                    fetch(`/posts/${id}/comments`, { mode: "cors" })
                 ]);
 
                 if (!postResponse.ok) {
