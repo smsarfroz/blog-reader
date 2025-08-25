@@ -60,7 +60,7 @@ function Blog() {
     let id = parseInt(postid);
     // console.log(comments, error, loading);
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>A network error was encountered</p>;
+    if (error) return <p>A network error was encountered: {error}</p>;
     if (!post) return <p>Post not found.</p>
 
     console.log('post: ', post);
