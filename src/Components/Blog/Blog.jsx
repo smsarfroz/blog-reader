@@ -25,8 +25,12 @@ const useComments = () => {
                     fetch(`/posts/${id}`, { mode: "cors" })
                 ]);
 
-                if (!postResponse.ok || !commentsResponse.ok) {
-                    throw new Error("Failed to fetch Data");
+                if (!postResponse.ok) {
+                    throw new Error("Failed to fetch post");
+                }
+
+                if (!commentsResponse.ok) {
+                    console.warn("Failed to fetch comments, using empty array");
                 }
 
                 const postData = await postResponse.json();
