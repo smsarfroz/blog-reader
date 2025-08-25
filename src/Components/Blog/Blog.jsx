@@ -33,13 +33,11 @@ const useComments = () => {
                     console.warn("Failed to fetch comments, using empty array");
                 }
 
-                const responseText = await postResponse.text();
-                const jsonPostData = await JSON.parse(responseText);
-                console.log(jsonPostData);
-                // const postData = await postResponse.json();
+                const postData = await postResponse.json();
+                console.log("postData ", postData);
                 const commentsData = await commentsResponse.json();
 
-                setPost(jsonPostData);
+                setPost(postData);
                 setComments(commentsData);
             } catch (err) {
                 setError(err.message);
