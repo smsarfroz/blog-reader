@@ -13,59 +13,45 @@ const useComments = () => {
     const [loading, setLoading] = useState(true);
     const [post, setPost] = useState(null);
 
-    const [error2, setError2] = useState(null);
-    const [loading2, setLoading2] = useState(true);
-
     let params = useParams();
     let postid = params.id;
     let id = parseInt(postid);
-    console.log("here1");
     useEffect(() => {
-        fetch(`/posts/${id}/comments`, { mode: "cors" })
-        .then((response) => {
-        if (response.status >= 400) {
-            throw new Error("server error");
-        }
-        return response.json();
-        })
-        .then((response) => setComments(response))
-        .catch((error) => setError(error))
-        .finally(() => setLoading(false));
-    }, []);
 
-    console.log("comments: ", comments);
-    console.log("here2");
+        const fetchData = async() => {
+            try {
+                const [postResponse, commentsResponse] = await Promise.all([
+                    fetch(`/posts/${id}/comments`, { mode: "cors" }),
+                    fetch(`/posts/${id}`, { mode: "cors" })
+                ]);
 
-    useEffect(() => {
-        fetch(`/posts/${id}`, { mode: "cors" })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                if (!post.ok || comments.ok) {
+                    throw new Error("Failed to fetch Data");
+                }
+
+                const postData = await postResponse.json();
+                const commentsData = await commentsResponse.json();
+
+                setPost(postData);
+                setComments(commentsData);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
             }
-            console.log("1 response: ", response);
-            return response.json();
-        })
-        .then((response) => {
-            console.log("response: ", response);
-            setPost(response)
-        })
-        .catch((error) => {
-            console.error('There was a problem with the fetch operation:', error);
-            setError2(error);
-        })
-        .finally(() => {
-            setLoading2(false);
-        })
+            fetchData();
+        };
+        
     }, []);
 
-    return {post, error2, loading2, comments, setComments, error, loading};
+    return {post, comments, setComments, error, loading};
 };
 
 function Blog() {
     const { loggedIn, authorId } = useContext(blogContext);
     // const receivedData = useLocation().state;
     // const { post } = receivedData;
-    const {post, error2, loading2, comments, setComments, error, loading} = useComments();
+    const {post, comments, setComments, error, loading} = useComments();
     const [inputComment, setInputComment] = useState("");
     
 
@@ -73,8 +59,9 @@ function Blog() {
     let postid = params.id;
     let id = parseInt(postid);
     // console.log(comments, error, loading);
-    if (loading || loading2) return <p>Loading...</p>;
-    if (error || error2) return <p>A network error was encountered</p>;
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>A network error was encountered</p>;
+    if (!post) return <p>Post not found.</p>
 
     console.log('post: ', post);
     console.log("comments: ", comments);
