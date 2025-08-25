@@ -35,6 +35,7 @@ const useComments = () => {
 
                 const responseText = await postResponse.text();
                 const jsonPostData = await JSON.parse(responseText);
+                console.log(jsonPostData);
                 // const postData = await postResponse.json();
                 const commentsData = await commentsResponse.json();
 
